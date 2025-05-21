@@ -1,0 +1,119 @@
+№Diagrams
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyFlow — Діаграми</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff;
+      color: #333;
+      margin: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+    }
+    canvas {
+      max-width: 500px;
+      width: 100%;
+    }
+    h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <section>
+    <h2>Radar: Оцінка функцій StudyFlow</h2>
+    <canvas id="radarChart"></canvas>
+  </section>
+
+  <section>
+    <h2>Гістограма: Дії в першу годину</h2>
+    <canvas id="barChart"></canvas>
+  </section>
+
+  <section>
+    <h2>Кругова діаграма: Популярність функцій</h2>
+    <canvas id="pieChart"></canvas>
+  </section>
+
+  <script>
+    // Radar Chart
+    new Chart(document.getElementById("radarChart"), {
+      type: "radar",
+      data: {
+        labels: ["Простота навчання", "Створення завдань", "Командна взаємодія", "Управління прогресом", "Гейміфікація"],
+        datasets: [{
+          label: "Оцінка",
+          data: [9, 8, 8, 7, 6],
+          backgroundColor: "rgba(47, 53, 66, 0.2)",
+          borderColor: "rgba(47, 53, 66, 1)",
+          borderWidth: 2,
+          pointBackgroundColor: "rgba(47, 53, 66, 1)"
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          r: {
+            suggestedMin: 0,
+            suggestedMax: 10,
+            ticks: { stepSize: 2 }
+          }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+
+    // Bar Chart
+    new Chart(document.getElementById("barChart"), {
+      type: "bar",
+      data: {
+        labels: ["Створення проєкту", "Додавання завдання", "Запрошення учасників", "Інше"],
+        datasets: [{
+          label: "Відсоток дій",
+          data: [40, 30, 20, 10],
+          backgroundColor: ["#7ed6df", "#70a1ff", "#eccc68", "#dff9fb"]
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 50,
+            ticks: { stepSize: 10 }
+          }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+
+    // Pie Chart
+    new Chart(document.getElementById("pieChart"), {
+      type: "pie",
+      data: {
+        labels: ["Створення завдань", "Перегляд дедлайнів", "Співпраця", "Аналітика"],
+        datasets: [{
+          data: [40, 25, 20, 15],
+          backgroundColor: ["#4a90e2", "#50e3c2", "#f5a623", "#d0021b"]
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+  </script>
+</body>
+</html>
